@@ -6,7 +6,7 @@ import policeReportsStyles from './police-reports.styles';
 
 const PoliceReportsView = (props) => {
   const styles = policeReportsStyles;
-  const { goNewReport, reports, deleteReport } = props;
+  const { createPDF, goNewReport, reports, deleteReport } = props;
 
   return (
     <Container style={styles.container}>
@@ -30,7 +30,7 @@ const PoliceReportsView = (props) => {
                 <TouchableOpacity onPress={() => deleteReport(item.id)}>
                   <Icon name='trash-outline' size={25} color='#00cb82' type='ionicon' />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={createPDF}>
                   <Icon name='download-outline' size={25} color='#00cb82' type='ionicon' />
                 </TouchableOpacity>
               </View>

@@ -4,6 +4,8 @@ import { ToastAndroid } from 'react-native';
 import { setReports } from '../../../../store/actions/reports-actions';
 import { getMyReports, deleteReport } from '../../../../lib/data/reports-data';
 import PoliceReportsView from './police-reports.view';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import RNPrint from 'react-native-print';
 
 class PoliceReports extends Component {
   constructor(props) {
@@ -31,10 +33,24 @@ class PoliceReports extends Component {
     console.log('Loading...')
   }
 
+  async printPDF() {
+    const results = await RNHTMLtoPDF.convert({
+      html: '<h1>Denuncia</h1>',
+      fileName: 'denuncia',
+      base64: true,
+    });
+    await RNPrint.print({ filePath: results.filePath })
+  }
+
   render() {
     const { reports } = this.props;
     return (
-      <PoliceReportsView goNewReport={this.goNewReport} reports={reports} deleteReport={this.deleteHandler} />
+      <PoliceReportsView
+        createPDF={this.printPDF}
+        goNewReport={this.goNewReport}
+        reports={reports}
+        deleteReport={this.deleteHandler}
+      />
     );
   }
   componentDidMount() {

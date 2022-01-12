@@ -20,6 +20,10 @@ target 'HatiApp' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'react-native-html-to-pdf', :path => '../node_modules/react-native-html-to-pdf'
+
+  pod 'react-native-print', :path => '../node_modules/react-native-print'
+
   target 'HatiAppTests' do
     inherit! :complete
     # Pods for testing
